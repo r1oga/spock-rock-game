@@ -1,5 +1,3 @@
-import { startConfetti, stopConfetti, removeConfetti } from './confetti.js'
-
 const [
   playerScoreEl,
   playerChoiceEl,
@@ -30,8 +28,10 @@ const resetSelected = () => {
   allGameIcons.forEach(icon => {
     icon.classList.remove('selected')
   })
-  stopConfetti()
-  removeConfetti()
+  import('./confetti.js').then(module => {
+    module.stopConfetti()
+    module.removeConfetti()
+  })
 }
 
 let playerScore = 0
@@ -48,10 +48,12 @@ const updateScore = choice => {
   if (choice === computerChoice) {
     resultText.textContent = ' Draw!'
   } else if (choices[choice].defeats.includes(computerChoice)) {
-    startConfetti()
-    resultText.textContent = 'You won!'
-    playerScore++
-    playerScoreEl.textContent = playerScore
+    import('./confetti.js').then(module => {
+      module.startConfetti()
+      resultText.textContent = 'You won!'
+      playerScore++
+      playerScoreEl.textContent = playerScore
+    })
   } else {
     resultText.textContent = 'You lose!'
     computerScore++
@@ -89,7 +91,5 @@ const resetAll = () => {
   resetSelected()
 }
 document.querySelector('.reset-icon').addEventListener('click', resetAll)
-
-resetAll()
 
 window.select = select
