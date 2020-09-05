@@ -3,33 +3,13 @@ const [
   playerChoiceEl,
   computerScoreEl,
   computerChoiceEl,
-  resultText,
-  playerRock,
-  playerPaper,
-  playerScissors,
-  playerLizard,
-  playerSpock,
-  computerRock,
-  computerPaper,
-  computerScissors,
-  computerLizard,
-  computerSpock
+  resultText
 ] = [
   'playerScore',
   'playerChoice',
   'computerScore',
   'computerChoice',
-  'resultText',
-  'playerRock',
-  'playerPaper',
-  'playerScissors',
-  'playerLizard',
-  'playerSpock',
-  'computerRock',
-  'computerPaper',
-  'computerScissors',
-  'computerLizard',
-  'computerSpock'
+  'resultText'
 ].map(id => document.getElementById(id))
 
 const allGameIcons = document.querySelectorAll('.far')
@@ -48,8 +28,12 @@ const resetSelected = () => {
   allGameIcons.forEach(icon => {
     icon.classList.remove('selected')
   })
+  stopConfetti()
+  removeConfetti()
 }
 
+let playerScore = 0
+let computerScore = 0
 let computerChoice = ''
 const computerRandomChoice = () => {
   const num = Math.floor(
@@ -58,10 +42,27 @@ const computerRandomChoice = () => {
   computerChoice = Object.keys(choices)[num]
 }
 
-// call functions to process turn
-const checkResult = () => {
+const updateScore = choice => {
+  if (choice === computerChoice) {
+    resultText.textContent = ' Draw!'
+  } else if (choices[choice].defeats.includes(computerChoice)) {
+    startConfetti()
+    resultText.textContent = 'You won!'
+    playerScore++
+    playerScoreEl.textContent = playerScore
+  } else {
+    resultText.textContent = 'You lose!'
+    computerScore++
+    computerScoreEl.textContent = computerScore
+  }
+}
+// Process round
+const checkResult = choice => {
   resetSelected()
   computerRandomChoice()
+  computerRandomChoice()
+  styleChoice(computerChoice, 'computer')
+  updateScore(choice)
 }
 
 const styleChoice = (choice, player) => {
@@ -74,8 +75,14 @@ const styleChoice = (choice, player) => {
 }
 
 const select = choice => {
-  resetSelected()
+  checkResult(choice)
   styleChoice(choice, 'player')
-  computerRandomChoice()
-  styleChoice(computerChoice, 'computer')
 }
+
+document.querySelector('.reset-icon').addEventListener('click', () => {
+  playerScoreEl.textContent = 0
+  computerScoreEl.textContent = 0
+  playerChoiceEl.textContent = ''
+  computerChoiceEl.textContent = ''
+  resetSelected()
+})
