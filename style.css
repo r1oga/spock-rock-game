@@ -16,7 +16,7 @@ body {
 
 .game-container {
   width: 530px;
-  height: 600px;
+  height: 550px;
   background: white;
   border-radius: 5px;
   box-shadow: 0 10px 20px -5px rgba(0, 0, 0, 0.5);
@@ -33,11 +33,11 @@ body {
 
 h1 {
   color: white;
-  font-size: 30px;
+  font-size: 22px;
 }
 
 .player-container {
-  margin: 50px;
+  margin: 43px 0 25px 20px;
 }
 
 h2 {
@@ -45,7 +45,7 @@ h2 {
 }
 
 .far {
-  font-size: 50px;
+  font-size: 43px;
   margin-right: 40px;
   user-select: none;
 }
@@ -72,7 +72,7 @@ h2 {
 }
 
 .reset-icon {
-  font-size: 30px;
+  margin-top: 15px;
   cursor: pointer;
   margin-left: 50px;
 }
@@ -81,6 +81,7 @@ h2 {
   display: flex;
   justify-content: center;
   align-items: center;
+  margin: 0 20px;
 }
 
 .result-text {
@@ -128,28 +129,27 @@ a {
 }
 
 /* Media Query: iPhone (Vertical) */
-@media screen and (max-width: 376px) {
-  .game-container {
-    height: 550px;
-  }
+.game-container {
+  height: 550px;
+}
 
-  h1 {
-    font-size: 22px;
-  }
+h1 {
+  font-size: 22px;
+}
 
-  .player-container {
-    margin: 43px 0 25px 20px;
-  }
+.player-container {
+  margin: 43px 0 25px 20px;
+}
 
-  .far {
-    font-size: 43px;
-  }
+.far {
+  font-size: 43px;
+}
 
-  .reset-icon {
-    margin-top: 15px;
-  }
+.reset-icon {
+  margin-top: 15px;
+  font-size: 30px;
+}
 
-  .result-container {
-    margin: 0 20px;
-  }
+.result-container {
+  margin: 0 20px;
 }
