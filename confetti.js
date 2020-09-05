@@ -15,15 +15,6 @@ var confetti = {
   isRunning: null //call and returns true or false depending on whether the animation is running
 }
 
-confetti.start = startConfetti
-confetti.stop = stopConfetti
-confetti.toggle = toggleConfetti
-confetti.pause = pauseConfetti
-confetti.resume = resumeConfetti
-confetti.togglePause = toggleConfettiPause
-confetti.isPaused = isConfettiPaused
-confetti.remove = removeConfetti
-confetti.isRunning = isConfettiRunning
 var supportsAnimationFrame =
   window.requestAnimationFrame ||
   window.webkitRequestAnimationFrame ||
@@ -228,3 +219,5 @@ function updateParticles() {
     }
   }
 }
+
+export { startConfetti, stopConfetti, removeConfetti }

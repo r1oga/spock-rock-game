@@ -1,3 +1,5 @@
+import { startConfetti, stopConfetti, removeConfetti } from './confetti.js'
+
 const [
   playerScoreEl,
   playerChoiceEl,
@@ -79,10 +81,15 @@ const select = choice => {
   styleChoice(choice, 'player')
 }
 
-document.querySelector('.reset-icon').addEventListener('click', () => {
+const resetAll = () => {
   playerScoreEl.textContent = 0
   computerScoreEl.textContent = 0
   playerChoiceEl.textContent = ''
   computerChoiceEl.textContent = ''
   resetSelected()
-})
+}
+document.querySelector('.reset-icon').addEventListener('click', resetAll)
+
+resetAll()
+
+window.select = select
